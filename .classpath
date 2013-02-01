@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
+  <classpathentry kind="src" path="src/test/resources" output="target/test-classes" excluding="**/*.java"/>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/4.8.1/junit-4.8.1.jar" sourcepath="M2_REPO/junit/junit/4.8.1/junit-4.8.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/mockito/mockito-all/1.8.5/mockito-all-1.8.5.jar" sourcepath="M2_REPO/org/mockito/mockito-all/1.8.5/mockito-all-1.8.5-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-integration/1.2.1/hamcrest-integration-1.2.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-integration/1.2.1/hamcrest-integration-1.2.1-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/aldoma/.m2/repository/org/hamcrest/hamcrest-integration/1.2.1/hamcrest-integration-1.2.1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-library/1.2.1/hamcrest-library-1.2.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-library/1.2.1/hamcrest-library-1.2.1-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/aldoma/.m2/repository/org/hamcrest/hamcrest-library/1.2.1/hamcrest-library-1.2.1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.2.1/hamcrest-core-1.2.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-core/1.2.1/hamcrest-core-1.2.1-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/aldoma/.m2/repository/org/hamcrest/hamcrest-core/1.2.1/hamcrest-core-1.2.1-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/net/avh4/util/imagecomparison/0.0.2/imagecomparison-0.0.2.jar" sourcepath="M2_REPO/net/avh4/util/imagecomparison/0.0.2/imagecomparison-0.0.2-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/aldoma/.m2/repository/net/avh4/util/imagecomparison/0.0.2/imagecomparison-0.0.2-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-all/1.1/hamcrest-all-1.1.jar" sourcepath="M2_REPO/org/hamcrest/hamcrest-all/1.1/hamcrest-all-1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-io/commons-io/1.4/commons-io-1.4.jar" sourcepath="M2_REPO/commons-io/commons-io/1.4/commons-io-1.4-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/aldoma/.m2/repository/commons-io/commons-io/1.4/commons-io-1.4-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+</classpath>
