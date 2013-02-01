@@ -9,7 +9,6 @@
 		<fileSet>
 			<directory>${project.basedir}/</directory>
 			<outputDirectory>/</outputDirectory>
-			<useDefaultExcludes>false</useDefaultExcludes>
 			<includes>
 				<include>README*</include>
 				<include>LICENSE*</include>
