@@ -21,10 +21,10 @@ public class FTest {
 	 */
 	@Test
 	@SuppressWarnings( "static-method" )
-	public void testCreaLista() {
+	public void testCreaLista() { //NOPMD
 		final List<C> lista = F.creaLista();
-		final Set<String> result = new HashSet<String>( lista.size() );
-		for (final C c : lista) {
+		final Set<String> result = new HashSet<String>( lista.size() ); //NOPMD
+		for (final C c : lista) { //NOPMD
 			Assert.assertTrue( result.add( c.getA() ) );
 		}
 	}

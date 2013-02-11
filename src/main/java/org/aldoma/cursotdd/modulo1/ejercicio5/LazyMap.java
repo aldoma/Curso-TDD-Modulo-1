@@ -13,12 +13,13 @@ import java.util.Set;
  * de esta para una visión general.
  * 
  * @param <K>
- *            the type of keys maintained by this map
+ *        the type of keys maintained by this map
  * @param <V>
- *            the type of mapped values
+ *        the type of mapped values
  * @author Alberto Dominguez Matamoros
  * @see Map
  */
+@SuppressWarnings( "PMD.TooManyMethods" )
 public interface LazyMap<K, V> {
 	// Query Operations
 
@@ -43,12 +44,12 @@ public interface LazyMap<K, V> {
 	 * that <tt>(key==null ? k==null : key.equals(k))</tt>. (There can be at most one such mapping.)
 	 * 
 	 * @param key
-	 *            key whose presence in this map is to be tested
+	 *        key whose presence in this map is to be tested
 	 * @return <tt>true</tt> if this map contains a mapping for the specified key
 	 * @throws ClassCastException
-	 *             if the key is of an inappropriate type for this map (optional)
+	 *         if the key is of an inappropriate type for this map (optional)
 	 * @throws NullPointerException
-	 *             if the specified key is null and this map does not permit null keys (optional)
+	 *         if the specified key is null and this map does not permit null keys (optional)
 	 */
 	boolean containsKey( Object key );
 
@@ -60,13 +61,12 @@ public interface LazyMap<K, V> {
 	 * <tt>LazyMap</tt> interface.
 	 * 
 	 * @param value
-	 *            value whose presence in this map is to be tested
+	 *        value whose presence in this map is to be tested
 	 * @return <tt>true</tt> if this map maps one or more keys to the specified value
 	 * @throws ClassCastException
-	 *             if the value is of an inappropriate type for this map (optional)
+	 *         if the value is of an inappropriate type for this map (optional)
 	 * @throws NullPointerException
-	 *             if the specified value is null and this map does not permit null values
-	 *             (optional)
+	 *         if the specified value is null and this map does not permit null values (optional)
 	 */
 	boolean containsValue( Object value );
 
@@ -85,13 +85,13 @@ public interface LazyMap<K, V> {
 	 * operation may be used to distinguish these two cases.
 	 * 
 	 * @param key
-	 *            the key whose associated value is to be returned
+	 *        the key whose associated value is to be returned
 	 * @return the value to which the specified key is mapped, or {@code null} if this map contains
 	 *         no mapping for the key
 	 * @throws ClassCastException
-	 *             if the key is of an inappropriate type for this map (optional)
+	 *         if the key is of an inappropriate type for this map (optional)
 	 * @throws NullPointerException
-	 *             if the specified key is null and this map does not permit null keys (optional)
+	 *         if the specified key is null and this map does not permit null keys (optional)
 	 */
 	V get( Object key );
 
@@ -105,22 +105,21 @@ public interface LazyMap<K, V> {
 	 * m.containsKey(k)} would return <tt>true</tt>.)
 	 * 
 	 * @param key
-	 *            key with which the specified value is to be associated
+	 *        key with which the specified value is to be associated
 	 * @param value
-	 *            value to be associated with the specified key
+	 *        value to be associated with the specified key
 	 * @return {@code true} si el valor especificado es almacenado en el mapa asociado a la clave
 	 *         especificada. {@code false} en caso contrario.
 	 * @throws UnsupportedOperationException
-	 *             if the <tt>put</tt> operation is not supported by this map
+	 *         if the <tt>put</tt> operation is not supported by this map
 	 * @throws ClassCastException
-	 *             if the class of the specified key or value prevents it from being stored in this
-	 *             map
+	 *         if the class of the specified key or value prevents it from being stored in this map
 	 * @throws NullPointerException
-	 *             if the specified key or value is null and this map does not permit null keys or
-	 *             values
+	 *         if the specified key or value is null and this map does not permit null keys or
+	 *         values
 	 * @throws IllegalArgumentException
-	 *             if some property of the specified key or value prevents it from being stored in
-	 *             this map
+	 *         if some property of the specified key or value prevents it from being stored in this
+	 *         map
 	 */
 	boolean put(	K key,
 					V value );
@@ -141,15 +140,15 @@ public interface LazyMap<K, V> {
 	 * The map will not contain a mapping for the specified key once the call returns.
 	 * 
 	 * @param key
-	 *            key whose mapping is to be removed from the map
+	 *        key whose mapping is to be removed from the map
 	 * @return the previous value associated with <tt>key</tt>, or <tt>null</tt> if there was no
 	 *         mapping for <tt>key</tt>.
 	 * @throws UnsupportedOperationException
-	 *             if the <tt>remove</tt> operation is not supported by this map
+	 *         if the <tt>remove</tt> operation is not supported by this map
 	 * @throws ClassCastException
-	 *             if the key is of an inappropriate type for this map (optional)
+	 *         if the key is of an inappropriate type for this map (optional)
 	 * @throws NullPointerException
-	 *             if the specified key is null and this map does not permit null keys (optional)
+	 *         if the specified key is null and this map does not permit null keys (optional)
 	 */
 	V remove( Object key );
 
@@ -165,28 +164,28 @@ public interface LazyMap<K, V> {
 	 * A diferencia del {@link Map} original, si alguna de las claves existentes en el mapa
 	 * especificado ya existe en este mapa <strong>el elemento no es sustituido</strong>.
 	 * 
-	 * @param m
-	 *            mappings to be stored in this map
+	 * @param aMap
+	 *        mappings to be stored in this map
 	 * @throws UnsupportedOperationException
-	 *             if the <tt>putAll</tt> operation is not supported by this map
+	 *         if the <tt>putAll</tt> operation is not supported by this map
 	 * @throws ClassCastException
-	 *             if the class of a key or value in the specified map prevents it from being stored
-	 *             in this map
+	 *         if the class of a key or value in the specified map prevents it from being stored in
+	 *         this map
 	 * @throws NullPointerException
-	 *             if the specified map is null, or if this map does not permit null keys or values,
-	 *             and the specified map contains null keys or values
+	 *         if the specified map is null, or if this map does not permit null keys or values, and
+	 *         the specified map contains null keys or values
 	 * @throws IllegalArgumentException
-	 *             if some property of a key or value in the specified map prevents it from being
-	 *             stored in this map
+	 *         if some property of a key or value in the specified map prevents it from being stored
+	 *         in this map
 	 */
-	void putAll( Map<? extends K, ? extends V> m );
+	void putAll( Map<? extends K, ? extends V> aMap );
 
 	/**
 	 * Removes all of the mappings from this map (optional operation). The map will be empty after
 	 * this call returns.
 	 * 
 	 * @throws UnsupportedOperationException
-	 *             if the <tt>clear</tt> operation is not supported by this map
+	 *         if the <tt>clear</tt> operation is not supported by this map
 	 */
 	void clear();
 
@@ -243,9 +242,9 @@ public interface LazyMap<K, V> {
 	 * iterator, except through the <tt>setValue</tt> operation on the map entry.
 	 * 
 	 * @param <K>
-	 *            the type of keys
+	 *        the type of keys
 	 * @param <V>
-	 *            the type of values
+	 *        the type of values
 	 * @see LazyMap#entrySet()
 	 */
 	interface Entry<K, V> {
@@ -254,8 +253,8 @@ public interface LazyMap<K, V> {
 		 * 
 		 * @return the key corresponding to this entry
 		 * @throws IllegalStateException
-		 *             implementations may, but are not required to, throw this exception if the
-		 *             entry has been removed from the backing map.
+		 *         implementations may, but are not required to, throw this exception if the entry
+		 *         has been removed from the backing map.
 		 */
 		K getKey();
 
@@ -266,8 +265,8 @@ public interface LazyMap<K, V> {
 		 * 
 		 * @return the value corresponding to this entry
 		 * @throws IllegalStateException
-		 *             implementations may, but are not required to, throw this exception if the
-		 *             entry has been removed from the backing map.
+		 *         implementations may, but are not required to, throw this exception if the entry
+		 *         has been removed from the backing map.
 		 */
 		V getValue();
 
@@ -278,22 +277,20 @@ public interface LazyMap<K, V> {
 		 * operation).
 		 * 
 		 * @param value
-		 *            new value to be stored in this entry
+		 *        new value to be stored in this entry
 		 * @return old value corresponding to the entry
 		 * @throws UnsupportedOperationException
-		 *             if the <tt>put</tt> operation is not supported by the backing map
+		 *         if the <tt>put</tt> operation is not supported by the backing map
 		 * @throws ClassCastException
-		 *             if the class of the specified value prevents it from being stored in the
-		 *             backing map
+		 *         if the class of the specified value prevents it from being stored in the backing
+		 *         map
 		 * @throws NullPointerException
-		 *             if the backing map does not permit null values, and the specified value is
-		 *             null
+		 *         if the backing map does not permit null values, and the specified value is null
 		 * @throws IllegalArgumentException
-		 *             if some property of this value prevents it from being stored in the backing
-		 *             map
+		 *         if some property of this value prevents it from being stored in the backing map
 		 * @throws IllegalStateException
-		 *             implementations may, but are not required to, throw this exception if the
-		 *             entry has been removed from the backing map.
+		 *         implementations may, but are not required to, throw this exception if the entry
+		 *         has been removed from the backing map.
 		 */
 		V setValue( V value );
 
@@ -310,12 +307,12 @@ public interface LazyMap<K, V> {
 		 * This ensures that the <tt>equals</tt> method works properly across different
 		 * implementations of the <tt>Map.Entry</tt> interface.
 		 * 
-		 * @param o
-		 *            object to be compared for equality with this map entry
+		 * @param anObject
+		 *        object to be compared for equality with this map entry
 		 * @return <tt>true</tt> if the specified object is equal to this map entry
 		 */
 		@Override
-		boolean equals( Object o );
+		boolean equals( Object anObject );
 
 		/**
 		 * Returns the hash code value for this map entry. The hash code of a map entry <tt>e</tt>
@@ -347,12 +344,12 @@ public interface LazyMap<K, V> {
 	 * <tt>m1.entrySet().equals(m2.entrySet())</tt>. This ensures that the <tt>equals</tt> method
 	 * works properly across different implementations of the <tt>Map</tt> interface.
 	 * 
-	 * @param o
-	 *            object to be compared for equality with this map
+	 * @param anObject
+	 *        object to be compared for equality with this map
 	 * @return <tt>true</tt> if the specified object is equal to this map
 	 */
 	@Override
-	boolean equals( Object o );
+	boolean equals( Object anObject );
 
 	/**
 	 * Returns the hash code value for this map. The hash code of a map is defined to be the sum of

@@ -38,14 +38,14 @@ public class NonRepeatingRandom {
 	 * 
 	 * @since 0.0.1
 	 */
-	final private int LowerLimit;
+	final public int LowerLimit; //NOPMD: Esto no es un bean
 
 	/**
 	 * Límite superior (excluido) del rango de enteros a retornar por {@link #next()}.
 	 * 
 	 * @since 0.0.1
 	 */
-	final private int UpperLimit;
+	final public int UpperLimit; //NOPMD: Esto no es un bean
 
 	/**
 	 * Lista de valores únicos correspondientes al intervalo [LowerLimit, UpperLimit) en el orden en
@@ -56,7 +56,7 @@ public class NonRepeatingRandom {
 	 * 
 	 * @since 0.0.1
 	 */
-	final private List<Integer> theList;
+	final private List<Integer> theList; //NOPMD: Esto no es un bean
 
 	/**
 	 * Índice interno al elemento de la lista que devolverá la próxima llamada a la función
@@ -64,7 +64,7 @@ public class NonRepeatingRandom {
 	 * 
 	 * @since 0.0.1
 	 */
-	private int nextIndex = 0;
+	private int nextIndex = 0; //NOPMD: Esto no es un bean
 
 	/**
 	 * Constructor con inicialización explícita de los límites inferior y superior del intervalo.
@@ -147,10 +147,12 @@ public class NonRepeatingRandom {
 	public int next()
 			throws NoSuchElementException {
 		try {
-			return theList.get( nextIndex++ ).intValue();
+			return theList.get( nextIndex++ ).intValue(); //NOPMD
 		}
 		catch (final IndexOutOfBoundsException ex) {
-			throw new NoSuchElementException( ex.getLocalizedMessage() );
+			final NoSuchElementException nsee = new NoSuchElementException( ex.getLocalizedMessage() );
+			nsee.initCause( ex );
+			throw nsee; //NOPMD: La hemos almacenda previamente.
 		}
 	}
 
@@ -162,5 +164,5 @@ public class NonRepeatingRandom {
 	 * @deprecated Desde la 0.0.2 usar {@link #size()} en su lugar.
 	 */
 	@Deprecated
-	public final int maxCapacity;
+	public final int maxCapacity; //NOPMD: Dado que está deprecated la tenemos al final
 }

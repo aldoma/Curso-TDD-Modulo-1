@@ -15,27 +15,27 @@ public class Triangle {
 	 * 
 	 * @since 0.0.1
 	 */
-	final private int side_a, side_b, side_c;
+	final private int side_a, side_b, side_c; //NOPMD: No es un bean
 
 	/**
 	 * Constructor con inicialización explicita de las longitudes de los lados.
 	 * 
-	 * @param a
-	 *            Longitud del primer lado.
-	 * @param b
-	 *            Longitud del segundo lado.
-	 * @param c
-	 *            Longitud del tercer lado.
+	 * @param side1
+	 *        Longitud del primer lado.
+	 * @param side2
+	 *        Longitud del segundo lado.
+	 * @param side3
+	 *        Longitud del tercer lado.
 	 * @since 0.0.1
 	 */
-	public Triangle(	final int a,
-						final int b,
-						final int c ) {
-		side_a = a;
-		side_b = b;
-		side_c = c;
+	public Triangle(	final int side1,
+						final int side2,
+						final int side3 ) {
+		side_a = side1;
+		side_b = side2;
+		side_c = side3;
 
-		if (!satisfyTriangleInequality()) {
+		if (!satisfyTriangleInequality()) { //NOPMD
 			classByLength = ClassByLength.NO_ES_UN_TRIÁNGULO;
 		}
 		else if (side_a == side_b && side_b == side_c) {
@@ -96,7 +96,7 @@ public class Triangle {
 	 * 
 	 * @since 0.0.1
 	 */
-	final private ClassByLength classByLength;
+	final private ClassByLength classByLength; //NOPMD: No es un bean
 
 	/**
 	 * Determina si las longitudes de los lados pasados como argumentos al

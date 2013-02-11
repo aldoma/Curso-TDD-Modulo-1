@@ -12,7 +12,9 @@ import java.util.List;
  * @author Alberto Dominguez Matamoros
  * @version 0.0.2
  */
-public class Ejercicio3 {
+public final class Ejercicio3 {
+	private Ejercicio3() {
+	}
 
 	/**
 	 * Tal y como se solicita en el ejercicio, este método construye tantas listas como elementos
@@ -28,15 +30,15 @@ public class Ejercicio3 {
 
 		final List<List<Integer>> result = new ArrayList<List<Integer>>( aList.size() );
 
-		final Integer[] asArray = aList.toArray( new Integer[0] );
+		final Integer[] asArray = aList.toArray( new Integer[aList.size()] ); //NOPMD
 		for (int i = 0; i < aList.size(); i++) {
-			final Integer[] newArray = new Integer[aList.size() - 1];
-			for (int j = 0, k = 0; j < asArray.length; j++) {
+			final Integer[] newArray = new Integer[aList.size() - 1]; //NOPMD
+			for (int j = 0, k = 0; j < asArray.length; j++) { //NOPMD
 				if (j != i) {
-					newArray[k++] = asArray[j];
+					newArray[k++] = asArray[j]; //NOPMD
 				}
 			}
-			result.add( Arrays.asList( newArray ) );
+			result.add( Arrays.asList( newArray ) ); //NOPMD
 		}
 		/*
 		 * En la revisión del código, Javier Jesús Gutiérrez Rodríguez (javierj@us.es) descubrio que

@@ -8,14 +8,14 @@ package org.aldoma.cursotdd.modulo1.ejercicio9;
  * 
  * @author Alberto Dominguez Matamoros
  */
-public class C {
-	final String a;
+public class C { //NOPMD
+	private final String a; //NOPMD
 
 	/**
 	 * Constructor que implementa la inicialización del atributo {@link a}.
 	 * 
 	 * @param arg
-	 *            valor a utilizar para inicializar {@link a}
+	 *        valor a utilizar para inicializar {@link a}
 	 */
 	C( final String arg ) {
 		a = arg;

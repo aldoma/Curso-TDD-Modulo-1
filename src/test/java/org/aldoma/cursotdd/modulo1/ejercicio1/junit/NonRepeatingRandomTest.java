@@ -28,8 +28,7 @@ public class NonRepeatingRandomTest {
 	@Test
 	public void valoresNoRepetidos() {
 		final NonRepeatingRandom testClass = new NonRepeatingRandom( 20, 60 );
-
-		final HashSet<Integer> comprobador = new HashSet<Integer>( testClass.size() );
+		final HashSet<Integer> comprobador = new HashSet<Integer>( testClass.size() ); //NOPMD
 
 		for (int i = 0; i < testClass.size(); i++) {
 			Assert.assertTrue( comprobador.add( Integer.valueOf( testClass.next() ) ) );
@@ -55,7 +54,7 @@ public class NonRepeatingRandomTest {
 			testClass.next();
 			Assert.fail( "La instancia se encuentra agotada -> debería generarse una excepción" );
 		}
-		catch (final NoSuchElementException ex) {
+		catch (final NoSuchElementException ex) { //NOPMD: Estos es Ok para jUnit
 			// OK, es el comportamiento esperado
 		}
 	}

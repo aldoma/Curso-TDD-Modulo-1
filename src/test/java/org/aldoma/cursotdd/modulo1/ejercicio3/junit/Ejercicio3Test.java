@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class Ejercicio3Test {
 	@SuppressWarnings( "boxing" )
-	final List<Integer> array = Arrays.asList( 5, 8, 6, 7, 2, 4, 9, 3, 1 );
+	final private List<Integer> array = Arrays.asList( 5, 8, 6, 7, 2, 4, 9, 3, 1 ); //NOPMD: No es un bean
 
 	/**
 	 * Test method for {@link Ejercicio3#generateLists(List)}.
@@ -32,7 +32,7 @@ public class Ejercicio3Test {
 	@Test
 	public void testGenerateLists_NumeroDeListas() {
 
-		Assert.assertEquals( array.size(), Ejercicio3.generateLists( array ).size() );
+		Assert.assertEquals( array.size(), Ejercicio3.generateLists( array ).size() ); //NOPMD
 	}
 
 	/**
@@ -44,10 +44,11 @@ public class Ejercicio3Test {
 	 * @since 0.0.1
 	 */
 	@Test
+	@SuppressWarnings( "PMD.DataflowAnomalyAnalysis" )
 	public void testGenerateLists_TamañoDeLasListas() {
 		final List<List<Integer>> result = Ejercicio3.generateLists( array );
 
-		for (final List<Integer> list : result) {
+		for (final List<Integer> list : result) { //NOPMD: Es un bug de PMD
 			Assert.assertEquals( array.size() - 1, list.size() );
 		}
 	}
@@ -61,10 +62,11 @@ public class Ejercicio3Test {
 	 * @since 0.0.1
 	 */
 	@Test
+	@SuppressWarnings( "PMD.DataflowAnomalyAnalysis" )
 	public void testGenerateLists_NoElementosExtranios() {
 		final List<List<Integer>> result = Ejercicio3.generateLists( array );
 
-		for (final List<Integer> list : result) {
+		for (final List<Integer> list : result) { //NOPMD: Es un bug de PMD
 			Assert.assertTrue( array.containsAll( list ) );
 		}
 	}
@@ -78,13 +80,14 @@ public class Ejercicio3Test {
 	 * @since 0.0.1
 	 */
 	@Test
+	@SuppressWarnings( "PMD.DataflowAnomalyAnalysis" )
 	public void testGenerateLists_PruebaReconstrucion() {
 		final List<List<Integer>> result = Ejercicio3.generateLists( array );
 
 		for (int j = 0; j < array.size(); j++) {
-			final List<Integer> tmp = new ArrayList<Integer>( array );
+			final List<Integer> tmp = new ArrayList<Integer>( array ); //NOPMD
 			tmp.remove( j );
-			Assert.assertTrue( result.contains( tmp ) );
+			Assert.assertTrue( result.contains( tmp ) ); //NOPMD
 		}
 	}
 
@@ -127,6 +130,6 @@ public class Ejercicio3Test {
 		final List<List<Integer>> result = Ejercicio3.generateLists( new ArrayList<Integer>( array.subList( 0, 1 ) ) );
 
 		Assert.assertEquals( 1, result.size() );
-		Assert.assertTrue( result.get( 0 ).isEmpty() );
+		Assert.assertTrue( result.get( 0 ).isEmpty() ); //NOPMD
 	}
 }

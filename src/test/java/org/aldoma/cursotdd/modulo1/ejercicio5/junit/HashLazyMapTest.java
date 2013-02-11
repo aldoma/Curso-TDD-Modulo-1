@@ -23,31 +23,42 @@ import org.junit.Test;
  * 
  * @author Alberto Dominguez Matamoros
  */
-@SuppressWarnings( "nls" )
+@SuppressWarnings( { "nls", "static-method", "boxing", "PMD.ExcessivePublicCount", "PMD.TooManyMethods", "PMD.GodClass" } )
 public class HashLazyMapTest {
+	private static final String MSG_BAD_KEY = "Valor de clave de incorrecto, elegir otro";
+	private static final String UNO = "Uno";
+	private static final String DOS = "Dos";
+	private static final String TRES = "Tres";
+	private static final String CUATRO = "Cuatro";
+	private static final String CINCO = "Cinco";
+	private static final String SEIS = "Seis";
+	private static final String SIETE = "Siete";
+	private static final String OCHO = "Ocho";
+	private static final String NUEVE = "Nueve";
+
 	/**
 	 * Un {@link HashMap} de {@link Integer} a {@link String} inicializado durante el
-	 * {@link #SetUp()} y utilizado por distintas pruebas.
+	 * {@link #setUp()} y utilizado por distintas pruebas.
 	 */
-	HashMap<Integer, String> initialMap = new HashMap<Integer, String>();
-	HashLazyMap<Integer, String> initialLazyMap = new HashLazyMap<Integer, String>();
+	@SuppressWarnings( "PMD.UseConcurrentHashMap" )
+	private final Map<Integer, String> initialMap = new HashMap<Integer, String>(); //PMD: No es un bean
+	private final HashLazyMap<Integer, String> initialLazyMap = new HashLazyMap<Integer, String>(); //NOPMD: No es un bean
 
 	/**
 	 * Inicializa las variables miembro de la clase utilizadas por los distintos casos de prueba.
 	 */
 	@Before
-	@SuppressWarnings( { "boxing" } )
-	public void SetUp() {
+	public void setUp() {
 		//
 		// ATENCIÓN!!!!
 		// Para algunos de los casos de prueba es importante que estos conjuntos sean disjuntos
-		initialMap.put( 1, "uno" );
-		initialMap.put( 2, "dos" );
-		initialMap.put( 4, "cuatro" );
-		initialMap.put( 5, "cinco" );
-		initialMap.put( 6, "seis" );
-		initialMap.put( 8, "ocho" );
-		initialMap.put( 9, "nueve" );
+		initialMap.put( 1, HashLazyMapTest.UNO );
+		initialMap.put( 2, HashLazyMapTest.DOS );
+		initialMap.put( 4, HashLazyMapTest.CUATRO );
+		initialMap.put( 5, HashLazyMapTest.CINCO );
+		initialMap.put( 6, HashLazyMapTest.SEIS );
+		initialMap.put( 8, HashLazyMapTest.OCHO );
+		initialMap.put( 9, HashLazyMapTest.NUEVE );
 
 		initialLazyMap.put( 1, "I" );
 		initialLazyMap.put( 3, "III" );
@@ -66,7 +77,7 @@ public class HashLazyMapTest {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialMap );
 
 		Assert.assertEquals( initialMap.size(), testClass.size() );
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertEquals( initialMap.get( key ), testClass.get( key ) );
 		}
 	}
@@ -79,7 +90,7 @@ public class HashLazyMapTest {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialLazyMap );
 
 		Assert.assertEquals( initialLazyMap.size(), testClass.size() );
-		for (final Integer key : initialLazyMap.keySet()) {
+		for (final Integer key : initialLazyMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertEquals( initialLazyMap.get( key ), testClass.get( key ) );
 		}
 	}
@@ -88,7 +99,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#isEmpty()} para una instancia creada vacía.
 	 */
 	@Test
-	@SuppressWarnings( "static-method" )
 	public void testIsEmpty_NuevaClase() {
 		final HashLazyMap<Integer, Integer> testClass = new HashLazyMap<Integer, Integer>();
 
@@ -196,7 +206,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#put(Object, Object)}
 	 */
 	@Test
-	@SuppressWarnings( { "static-method", "boxing" } )
 	public void testPut() {
 		final int numElementos = 10;
 		final HashLazyMap<Integer, Integer> testClass = new HashLazyMap<Integer, Integer>();
@@ -209,7 +218,7 @@ public class HashLazyMapTest {
 
 		// ...y su valor
 		for (int i = 0; i < numElementos; i++) {
-			Assert.assertEquals( i, testClass.get( i ).intValue() );
+			Assert.assertEquals( i, testClass.get( i ).intValue() ); //NOPMD
 		}
 	}
 
@@ -217,7 +226,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#put(Object, Object)} sobreescribiendo
 	 */
 	@Test
-	@SuppressWarnings( { "boxing" } )
 	public void testPut_Sobreescribiendo() {
 		final Integer keyToTest = 5;
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialMap );
@@ -234,7 +242,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#put(Object, Object)} con una key {@code null}
 	 */
 	@Test
-	@SuppressWarnings( { "static-method" } )
 	public void testPut_ConKeyNull() {
 		final String valueToTest = "Esto es un null"; //$NON-NLS-1$
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>();
@@ -250,7 +257,6 @@ public class HashLazyMapTest {
 	 * {@code null}
 	 */
 	@Test
-	@SuppressWarnings( { "static-method" } )
 	public void testPut_SobreescribiendoConKeyNull() {
 		final String valueToTest = "Esto es un null"; //$NON-NLS-1$
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>();
@@ -270,7 +276,7 @@ public class HashLazyMapTest {
 		testClass.putAll( initialMap );
 
 		Assert.assertEquals( initialMap.size(), testClass.size() );
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertEquals( initialMap.get( key ), testClass.get( key ) );
 		}
 	}
@@ -285,13 +291,13 @@ public class HashLazyMapTest {
 
 		// A pesar del putAll anterior los valores asociados a las claves ya existenten no han
 		// debido ser modificados...
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			if (initialLazyMap.containsKey( key )) {
 				Assert.assertEquals( initialLazyMap.get( key ), testClass.get( key ) );
 			}
 		}
 		// ...sin embargo aquellas no existentes si han debido ser añadidas
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			if (!initialLazyMap.containsKey( key )) {
 				Assert.assertEquals( initialMap.get( key ), testClass.get( key ) );
 			}
@@ -317,7 +323,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#remove(Object)} intentando eliminar una clave null
 	 */
 	@Test
-	@SuppressWarnings( "static-method" )
 	public void testRemove_ConNull() {
 		final String valueToTest = "Esto es un null"; //$NON-NLS-1$
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>();
@@ -332,7 +337,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#remove(Object)} intentando eliminar una clave inexistente
 	 */
 	@Test
-	@SuppressWarnings( "static-method" )
 	public void testRemove_ConClaveInexistente() {
 		final Integer keyToTest = Integer.valueOf( 6 );
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>();
@@ -344,7 +348,6 @@ public class HashLazyMapTest {
 	/**
 	 * Test method for {@link HashLazyMap#clear()}
 	 */
-	@SuppressWarnings( { "static-method", "boxing" } )
 	@Test
 	public void testClear() {
 		final HashLazyMap<Integer, Integer> testClass = new HashLazyMap<Integer, Integer>();
@@ -365,7 +368,7 @@ public class HashLazyMapTest {
 		final Integer keyToTest = Integer.valueOf( 7 );
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialLazyMap );
 
-		Assert.assertTrue( "Valor de clave de incorrecto, elegir otro", initialLazyMap.containsKey( keyToTest ) );
+		Assert.assertTrue( HashLazyMapTest.MSG_BAD_KEY, initialLazyMap.containsKey( keyToTest ) );
 		final String valueToTest = initialLazyMap.get( keyToTest );
 
 		Assert.assertTrue( testClass.containsValue( valueToTest ) );
@@ -375,7 +378,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#containsValue(Object)} con valor inexistente
 	 */
 	@Test
-	@SuppressWarnings( "static-method" )
 	public void testContainsValue_ConValorInexistente() {
 		final HashLazyMap<Integer, Integer> testClass = new HashLazyMap<Integer, Integer>();
 
@@ -386,7 +388,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#containsValue(Object)} con valor {@code null}
 	 */
 	@Test
-	@SuppressWarnings( { "boxing", "static-method" } )
 	public void testContainsValue_ConValorNull() {
 		final HashLazyMap<Integer, Integer> testClass = new HashLazyMap<Integer, Integer>();
 
@@ -414,7 +415,7 @@ public class HashLazyMapTest {
 		testClass.clone();
 
 		Assert.assertEquals( initialLazyMap.size(), testClass.size() );
-		for (final Integer key : testClass.keySet()) {
+		for (final Integer key : testClass.keySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertEquals( initialLazyMap.get( key ), testClass.get( key ) );
 		}
 	}
@@ -430,7 +431,7 @@ public class HashLazyMapTest {
 
 		Assert.assertEquals( testClass.size(), keys.size() );
 
-		for (final LazyMap.Entry<Integer, String> entry : testClass.entrySet()) {
+		for (final LazyMap.Entry<Integer, String> entry : testClass.entrySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertTrue( keys.contains( entry.getKey() ) );
 		}
 	}
@@ -439,7 +440,6 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#keySet()} sobre un mapa vacío.
 	 */
 	@Test
-	@SuppressWarnings( "static-method" )
 	public void testKeySet_DeUnMapaVacio() {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>();
 
@@ -454,13 +454,13 @@ public class HashLazyMapTest {
 	public void testKeySet_Remove() {
 		final Integer keyToTest = Integer.valueOf( 5 );
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialLazyMap );
-		Assert.assertTrue( "Valor de clave de incorrecto, elegir otro", testClass.containsKey( keyToTest ) );
+		Assert.assertTrue( HashLazyMapTest.MSG_BAD_KEY, testClass.containsKey( keyToTest ) );
 
 		final Set<Integer> keys = testClass.keySet();
 
 		Assert.assertTrue( keys.remove( keyToTest ) );
 		Assert.assertEquals( initialLazyMap.size() - 1, testClass.size() );
-		Assert.assertEquals( testClass.size(), keys.size() );
+		Assert.assertEquals( testClass.size(), keys.size() ); //NOPMD
 	}
 
 	/**
@@ -471,7 +471,7 @@ public class HashLazyMapTest {
 	public void testKeySet_RemoveClaveInexistente() {
 		final Integer keyToTest = Integer.valueOf( -55 );
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialLazyMap );
-		Assert.assertFalse( "Valor de clave de incorrecto, elegir otro", testClass.containsKey( keyToTest ) );
+		Assert.assertFalse( HashLazyMapTest.MSG_BAD_KEY, testClass.containsKey( keyToTest ) );
 
 		final Set<Integer> keys = testClass.keySet();
 
@@ -490,9 +490,9 @@ public class HashLazyMapTest {
 
 		final Set<Integer> keys = testClass.keySet();
 
-		Assert.assertTrue( keys.removeAll( initialMap.keySet() ) );
+		Assert.assertTrue( keys.removeAll( initialMap.keySet() ) ); //NOPMD
 
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertFalse( testClass.containsKey( key ) );
 		}
 	}
@@ -509,7 +509,7 @@ public class HashLazyMapTest {
 
 		Assert.assertTrue( keys.retainAll( initialMap.keySet() ) );
 
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			if (initialLazyMap.containsKey( key )) {
 				Assert.assertTrue( testClass.containsKey( key ) );
 			}
@@ -548,7 +548,7 @@ public class HashLazyMapTest {
 		}
 		Assert.assertTrue( initialLazyMap.size() > testClass.size() );
 
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertFalse( testClass.containsKey( key ) );
 		}
 	}
@@ -564,7 +564,7 @@ public class HashLazyMapTest {
 
 		Assert.assertEquals( testClass.size(), values.size() );
 
-		for (final LazyMap.Entry<Integer, String> entry : testClass.entrySet()) {
+		for (final LazyMap.Entry<Integer, String> entry : testClass.entrySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertTrue( values.contains( entry.getValue() ) );
 		}
 	}
@@ -573,11 +573,10 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#values()} sobre un mapa vacío.
 	 */
 	@Test
-	@SuppressWarnings( "static-method" )
 	public void testValues_DeUnMapaVacio() {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>();
 
-		Assert.assertTrue( testClass.values().isEmpty() );
+		Assert.assertTrue( testClass.values().isEmpty() ); //NOPMD
 	}
 
 	/**
@@ -588,7 +587,7 @@ public class HashLazyMapTest {
 	public void testValues_Remove() {
 		final Integer keyToTest = Integer.valueOf( 5 );
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialLazyMap );
-		Assert.assertTrue( "Valor de clave de incorrecto, elegir otro", testClass.containsKey( keyToTest ) );
+		Assert.assertTrue( HashLazyMapTest.MSG_BAD_KEY, testClass.containsKey( keyToTest ) );
 
 		final Collection<String> values = testClass.values();
 
@@ -619,13 +618,14 @@ public class HashLazyMapTest {
 	@Test
 	public void testValues_RemoveAll() {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialMap );
-		final String array[] = new String[] { "tres", "cinco", "siete", "nueve" };
+		final String array[] = new String[] { HashLazyMapTest.TRES, HashLazyMapTest.CINCO, HashLazyMapTest.SIETE,
+				HashLazyMapTest.NUEVE };
 
 		final Collection<String> values = testClass.values();
 
-		Assert.assertTrue( values.removeAll( Arrays.asList( array ) ) );
+		Assert.assertTrue( values.removeAll( Arrays.asList( array ) ) ); //NOPMD
 
-		for (final String value : Arrays.asList( array )) {
+		for (final String value : Arrays.asList( array )) { //NOPMD: Esto es un bug de PMD
 			Assert.assertFalse( testClass.containsValue( value ) );
 		}
 	}
@@ -637,13 +637,14 @@ public class HashLazyMapTest {
 	@Test
 	public void testValues_RetainAll() {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialMap );
-		final String array[] = new String[] { "tres", "cinco", "siete", "nueve" };
+		final String array[] = new String[] { HashLazyMapTest.TRES, HashLazyMapTest.CINCO, HashLazyMapTest.SIETE,
+				HashLazyMapTest.NUEVE };
 
 		final Collection<String> values = testClass.values();
 
 		Assert.assertTrue( values.retainAll( Arrays.asList( array ) ) );
 
-		for (final String value : Arrays.asList( array )) {
+		for (final String value : Arrays.asList( array )) { //NOPMD: Esto es un bug de PMD
 			if (initialMap.containsValue( value )) {
 				Assert.assertTrue( testClass.containsValue( value ) );
 			}
@@ -671,7 +672,8 @@ public class HashLazyMapTest {
 	@Test
 	public void testValues_IteratorRemove() {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialMap );
-		final String array[] = new String[] { "tres", "cinco", "siete", "nueve" };
+		final String array[] = new String[] { HashLazyMapTest.TRES, HashLazyMapTest.CINCO, HashLazyMapTest.SIETE,
+				HashLazyMapTest.NUEVE };
 
 		final Collection<String> toRemove = Arrays.asList( array );
 		final Collection<String> values = testClass.values();
@@ -684,7 +686,7 @@ public class HashLazyMapTest {
 		}
 		Assert.assertTrue( initialLazyMap.size() > testClass.size() );
 
-		for (final String value : toRemove) {
+		for (final String value : toRemove) { //NOPMD: Esto es un bug de PMD
 			Assert.assertFalse( testClass.containsValue( value ) );
 		}
 	}
@@ -698,9 +700,9 @@ public class HashLazyMapTest {
 
 		final Set<Entry<Integer, String>> entries = testClass.entrySet();
 
-		Assert.assertEquals( testClass.size(), entries.size() );
+		Assert.assertEquals( testClass.size(), entries.size() ); //NOPMD
 
-		for (final LazyMap.Entry<Integer, String> entry : entries) {
+		for (final LazyMap.Entry<Integer, String> entry : entries) { //NOPMD: Esto es un bug de PMD
 			Assert.assertTrue( testClass.containsKey( entry.getKey() ) );
 			Assert.assertTrue( testClass.containsValue( entry.getValue() ) );
 		}
@@ -710,11 +712,10 @@ public class HashLazyMapTest {
 	 * Test method for {@link HashLazyMap#entrySet()} sobre un mapa vacío.
 	 */
 	@Test
-	@SuppressWarnings( "static-method" )
 	public void testEntrySet_DeUnMapaVacio() {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>();
 
-		Assert.assertTrue( testClass.entrySet().isEmpty() );
+		Assert.assertTrue( testClass.entrySet().isEmpty() ); //NOPMD
 	}
 
 	/**
@@ -725,10 +726,10 @@ public class HashLazyMapTest {
 	public void testEntrySet_Remove() {
 		final Integer keyToTest = Integer.valueOf( 5 );
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialLazyMap );
-		Assert.assertTrue( "Valor de clave de incorrecto, elegir otro", testClass.containsKey( keyToTest ) );
+		Assert.assertTrue( HashLazyMapTest.MSG_BAD_KEY, testClass.containsKey( keyToTest ) );
 
 		final Set<Entry<Integer, String>> entries = testClass.entrySet();
-		for (final Entry<Integer, String> entry : entries) {
+		for (final Entry<Integer, String> entry : entries) { //NOPMD: Esto es un bug de PMD
 			if (keyToTest == entry.getKey()) {
 				Assert.assertTrue( entries.remove( entry ) );
 				break;
@@ -747,7 +748,7 @@ public class HashLazyMapTest {
 		final HashLazyMap<Integer, String> testClass = new HashLazyMap<Integer, String>( initialLazyMap );
 
 		final Set<Entry<Integer, String>> entries = testClass.entrySet();
-		for (final Map.Entry<Integer, String> entry : initialMap.entrySet()) {
+		for (final Map.Entry<Integer, String> entry : initialMap.entrySet()) { //NOPMD: Esto es un bug de PMD
 			if (!testClass.containsKey( entry.getKey() )) {
 				Assert.assertFalse( entries.remove( entry ) );
 				break;
@@ -768,7 +769,7 @@ public class HashLazyMapTest {
 
 		final Set<Entry<Integer, String>> entries = testClass.entrySet();
 		final Set<Entry<Integer, String>> entriesToDelete = new HashSet<LazyMap.Entry<Integer, String>>();
-		for (final Entry<Integer, String> entry : entries) {
+		for (final Entry<Integer, String> entry : entries) { //NOPMD: Esto es un bug de PMD
 			if (initialMap.containsKey( entry.getKey() )) {
 				entriesToDelete.add( entry );
 			}
@@ -776,7 +777,7 @@ public class HashLazyMapTest {
 
 		Assert.assertTrue( entries.removeAll( entriesToDelete ) );
 
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertFalse( testClass.containsKey( key ) );
 		}
 	}
@@ -791,15 +792,15 @@ public class HashLazyMapTest {
 
 		final Set<Entry<Integer, String>> entries = testClass.entrySet();
 		final Set<Entry<Integer, String>> entriesToRetain = new HashSet<LazyMap.Entry<Integer, String>>();
-		for (final Entry<Integer, String> entry : entries) {
+		for (final Entry<Integer, String> entry : entries) { //NOPMD: Esto es un bug de PMD
 			if (initialMap.containsKey( entry.getKey() )) {
 				entriesToRetain.add( entry );
 			}
 		}
 
-		Assert.assertTrue( entries.retainAll( entriesToRetain ) );
+		Assert.assertTrue( entries.retainAll( entriesToRetain ) ); //NOPMD
 
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			if (initialLazyMap.containsKey( key )) {
 				Assert.assertTrue( testClass.containsKey( key ) );
 			}
@@ -838,7 +839,7 @@ public class HashLazyMapTest {
 		}
 		Assert.assertTrue( initialLazyMap.size() > testClass.size() );
 
-		for (final Integer key : initialMap.keySet()) {
+		for (final Integer key : initialMap.keySet()) { //NOPMD: Esto es un bug de PMD
 			Assert.assertFalse( testClass.containsKey( key ) );
 		}
 	}

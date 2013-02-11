@@ -18,9 +18,9 @@ import java.util.Set;
  * Implementación del interfaze {@link LazyMap}.
  * 
  * @param <K>
- *            the type of keys maintained by this map
+ *        the type of keys maintained by this map
  * @param <V>
- *            the type of mapped values
+ *        the type of mapped values
  * @author Alberto Dominguez Matamoros
  */
 public class HashLazyMap<K, V>
@@ -84,11 +84,11 @@ public class HashLazyMap<K, V>
 	 * Constructs an empty <tt>HashLazyMap</tt> with the specified initial capacity and load factor.
 	 * 
 	 * @param initialCapacity
-	 *            the initial capacity
+	 *        the initial capacity
 	 * @param loadFactor
-	 *            the load factor
+	 *        the load factor
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is negative or the load factor is nonpositive
+	 *         if the initial capacity is negative or the load factor is nonpositive
 	 */
 	public HashLazyMap( final int initialCapacity,
 						final float loadFactor ) {
@@ -120,9 +120,9 @@ public class HashLazyMap<K, V>
 	 * load factor (0.75).
 	 * 
 	 * @param initialCapacity
-	 *            the initial capacity.
+	 *        the initial capacity.
 	 * @throws IllegalArgumentException
-	 *             if the initial capacity is negative.
+	 *         if the initial capacity is negative.
 	 */
 	public HashLazyMap( final int initialCapacity ) {
 		this( initialCapacity, HashLazyMap.DEFAULT_LOAD_FACTOR );
@@ -145,9 +145,9 @@ public class HashLazyMap<K, V>
 	 * sufficient to hold the mappings in the specified <tt>Map</tt>.
 	 * 
 	 * @param m
-	 *            the map whose mappings are to be placed in this map
+	 *        the map whose mappings are to be placed in this map
 	 * @throws NullPointerException
-	 *             if the specified map is null
+	 *         if the specified map is null
 	 */
 	public HashLazyMap( final Map<? extends K, ? extends V> m ) {
 		this( Math.max( (int) (m.size() / HashLazyMap.DEFAULT_LOAD_FACTOR) + 1, HashLazyMap.DEFAULT_INITIAL_CAPACITY ),
@@ -161,9 +161,9 @@ public class HashLazyMap<K, V>
 	 * initial capacity sufficient to hold the mappings in the specified <tt>LazyMap</tt>.
 	 * 
 	 * @param m
-	 *            the map whose mappings are to be placed in this map
+	 *        the map whose mappings are to be placed in this map
 	 * @throws NullPointerException
-	 *             if the specified map is null
+	 *         if the specified map is null
 	 */
 	public HashLazyMap( final LazyMap<? extends K, ? extends V> m ) {
 		this( Math.max( (int) (m.size() / HashLazyMap.DEFAULT_LOAD_FACTOR) + 1, HashLazyMap.DEFAULT_INITIAL_CAPACITY ),
@@ -171,7 +171,7 @@ public class HashLazyMap<K, V>
 		putAllForCreate( m );
 	}
 
-// internal utilities
+	// internal utilities
 
 	/**
 	 * Initialization hook for subclasses. This method is called in all constructors and
@@ -189,10 +189,11 @@ public class HashLazyMap<K, V>
 	 * that otherwise encounter collisions for hashCodes that do not differ in lower bits. Note:
 	 * Null keys always map to hash 0, thus index 0.
 	 */
-	static int hash( int h ) {
+	static int hash( final int hash ) {
 		// This function ensures that hashCodes that differ only by
 		// constant multiples at each bit position have a bounded
 		// number of collisions (approximately 8 at default load factor).
+		int h = hash;
 		h ^= h >>> 20 ^ h >>> 12;
 		return h ^ h >>> 7 ^ h >>> 4;
 	}
@@ -275,7 +276,7 @@ public class HashLazyMap<K, V>
 	 * Returns <tt>true</tt> if this map contains a mapping for the specified key.
 	 * 
 	 * @param key
-	 *            The key whose presence in this map is to be tested
+	 *        The key whose presence in this map is to be tested
 	 * @return <tt>true</tt> if this map contains a mapping for the specified key.
 	 */
 	@Override
@@ -305,9 +306,9 @@ public class HashLazyMap<K, V>
 	 * función retorna {@code false}.
 	 * 
 	 * @param key
-	 *            key with which the specified value is to be associated
+	 *        key with which the specified value is to be associated
 	 * @param value
-	 *            value to be associated with the specified key
+	 *        value to be associated with the specified key
 	 * @return {@code true} si la clave y el valor especificados son insertados en el mapa y
 	 *         asociados correctamente. {@code false} en caso contrario.
 	 */
@@ -393,8 +394,8 @@ public class HashLazyMap<K, V>
 	 * Integer.MAX_VALUE. This has the effect of preventing future calls.
 	 * 
 	 * @param newCapacity
-	 *            the new capacity, MUST be a power of two; must be greater than current capacity
-	 *            unless current capacity is MAXIMUM_CAPACITY (in which case value is irrelevant).
+	 *        the new capacity, MUST be a power of two; must be greater than current capacity unless
+	 *        current capacity is MAXIMUM_CAPACITY (in which case value is irrelevant).
 	 */
 	void resize( final int newCapacity ) {
 		@SuppressWarnings( "unchecked" )
@@ -440,9 +441,9 @@ public class HashLazyMap<K, V>
 	 * any mappings that this map had for any of the keys currently in the specified map.
 	 * 
 	 * @param m
-	 *            mappings to be stored in this map
+	 *        mappings to be stored in this map
 	 * @throws NullPointerException
-	 *             if the specified map is null
+	 *         if the specified map is null
 	 */
 	@Override
 	public void putAll( final Map<? extends K, ? extends V> m ) {
@@ -481,7 +482,7 @@ public class HashLazyMap<K, V>
 	 * Removes the mapping for the specified key from this map if present.
 	 * 
 	 * @param key
-	 *            key whose mapping is to be removed from the map
+	 *        key whose mapping is to be removed from the map
 	 * @return the previous value associated with <tt>key</tt>, or <tt>null</tt> if there was no
 	 *         mapping for <tt>key</tt>. (A <tt>null</tt> return can also indicate that the map
 	 *         previously associated <tt>null</tt> with <tt>key</tt>.)
@@ -581,7 +582,7 @@ public class HashLazyMap<K, V>
 	 * Returns <tt>true</tt> if this map maps one or more keys to the specified value.
 	 * 
 	 * @param value
-	 *            value whose presence in this map is to be tested
+	 *        value whose presence in this map is to be tested
 	 * @return <tt>true</tt> if this map maps one or more keys to the specified value
 	 */
 	@Override
@@ -868,7 +869,7 @@ public class HashLazyMap<K, V>
 		}
 	}
 
-// Subclass overrides these to alter behavior of views' iterator() method
+	// Subclass overrides these to alter behavior of views' iterator() method
 	Iterator<K> newKeyIterator() {
 		return new KeyIterator();
 	}
@@ -881,7 +882,7 @@ public class HashLazyMap<K, V>
 		return new EntryIterator();
 	}
 
-// Views
+	// Views
 
 	private transient Set<LazyMap.Entry<K, V>> entrySet = null;
 
@@ -1068,13 +1069,13 @@ public class HashLazyMap<K, V>
 			throws IOException {
 		final Iterator<LazyMap.Entry<K, V>> i = size > 0 ? entrySet0().iterator() : null;
 
-// Write out the threshold, loadfactor, and any hidden stuff
+		// Write out the threshold, loadfactor, and any hidden stuff
 		s.defaultWriteObject();
 
-// Write out number of buckets
+		// Write out number of buckets
 		s.writeInt( table.length );
 
-// Write out size (number of Mappings)
+		// Write out size (number of Mappings)
 		s.writeInt( size );
 
 		// Write out keys and values (alternating)
@@ -1095,20 +1096,20 @@ public class HashLazyMap<K, V>
 	private void readObject( final java.io.ObjectInputStream s )
 			throws IOException,
 				ClassNotFoundException {
-// Read in the threshold, loadfactor, and any hidden stuff
+		// Read in the threshold, loadfactor, and any hidden stuff
 		s.defaultReadObject();
 
-// Read in number of buckets and allocate the bucket array;
+		// Read in number of buckets and allocate the bucket array;
 		final int numBuckets = s.readInt();
 		table = new Entry[numBuckets];
 
 		init(); // Give subclass a chance to do its thing.
 
-// Read in size (number of Mappings)
+		// Read in size (number of Mappings)
 		@SuppressWarnings( "hiding" )
 		final int size = s.readInt();
 
-// Read the keys and values, and put the mappings in the HashLazyMap
+		// Read the keys and values, and put the mappings in the HashLazyMap
 		for (int i = 0; i < size; i++) {
 			@SuppressWarnings( "unchecked" )
 			final K key = (K) s.readObject();
@@ -1118,7 +1119,7 @@ public class HashLazyMap<K, V>
 		}
 	}
 
-// These methods are used when serializing HashSets
+	// These methods are used when serializing HashSets
 	int capacity() {
 		return table.length;
 	}

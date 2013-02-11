@@ -38,7 +38,7 @@ public class Ejercicio7Test {
 	public void testDecorarTexto_ConArgumentoVacio() {
 		final String actual = Ejercicio7.decorarTexto( "" );
 
-		Assert.assertTrue( actual.isEmpty() );
+		Assert.assertTrue( actual.isEmpty() ); //NOPMD
 	}
 
 	/**
